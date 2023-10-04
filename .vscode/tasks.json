@@ -1,0 +1,50 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558 
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+        "type": "shell",
+        "label": "task g++",
+        "command": "D:\\Program Files\\mingw64\\bin\\g++.exe",	/*修改成自己bin目录下的g++.exe，这里的路径和电脑里复制的文件目录有一点不一样，这里是两个反斜杠\\*/
+        "args": [
+            "-g",
+            "-fexec-charset=GBK",   // 处理mingw中文编码问题
+            "-finput-charset=UTF-8",// 处理mingw中文编码问题
+            "${file}",
+            "-o",
+            "${workspaceFolder}\\${fileBasenameNoExtension}.exe",//生成的exe文件存放处
+            "-I",
+            "${workspaceFolder}",   //生成的exe文件存放处   /*修改成自己放c/c++项目的文件夹，这里的路径和电脑里复制的文件目录有一点不一样，这里是两个反斜杠\\*/
+            "-std=c++17",
+        ],
+        "options": {
+            "cwd": "D:\\Program Files\\mingw64\\bin"	/*修改成自己bin目录，这里的路径和电脑里复制的文件目录有一点不一样，这里是两个反斜杠\\*/
+        },
+        "problemMatcher":[
+            "$gcc"
+        ],
+        "group": "build",
+        
+        },
+        {
+            "label": "C/C++: gcc.exe 生成活动文件",  //任务标签，用于标识这个任务
+            "type": "shell",  //任务类型 process表示作为进程进程，shell表示输入命令进行 
+            "command": "g++",//要执行的命令，这里是使用g++编译程序
+            "args": [//命令的一些参数
+              "-g",//
+              "${file}",//当前文件名
+              "-o",//不进行编译优化
+              
+            //   "${fileBasenameNoExtension}.exe"//当前不包括扩展名的文件名
+              "${workspaceFolder}\\Run.exe"//强制改为自己的文件夹路径
+     
+            ],
+            //最后拼接起来的shell命令举例 g++ -g c:\Users\muzit\Desktop\lock\LR1.cpp -o LR1.exe
+            "problemMatcher": [
+              "$gcc"
+            ]
+          }
+    ]
+}
+
